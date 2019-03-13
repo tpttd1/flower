@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div th:replace="fragments/header :: header"></div>
+        <div id="nav">
+            <div class="container">
+                <div id="menu">
+                    <ul>
+                        <li><a href="#">Giày Cao Gót</a></li>
+                        <li><a href="#">Giày Boots</a></li>
+                        <li><a href="#">Giày Búp bê</a></li>
+                        <li><a href="#">Dép Guốc</a></li>
+                        <li><a href="#">Khuyến mại</a></li>
+                        <li><a href="#">Voucher</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="slider">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <a href="#">
+                                <img src="/static/img/slider-01.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="/static/img/slider-02.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="/static/img/slider-03.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left" href="#myCarousel" data-slide="prev"></a>
+                    <a class="right" href="#myCarousel" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div id="main-content">
+            <div class="container">
+                <h3>GIÀY HOT CHO TUẦN NÀY</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/gio-hoa.jpg" alt=""></a>
+                        <p class="name">
+                            <span class="hot">BÁN CHẠY</span>
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-chuong.jpg" alt=""></a>
+                        <p class="name">
+                            <span class="hot">BÁN CHẠY</span>
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-hong-do-01.png" alt=""></a>
+                        <p class="name">
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/gio-hoa.jpg" alt=""></a>
+                        <p class="name">
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-hong-tim.jpg" alt=""></a>
+                        <p class="name">
+                            <span class="hot">BÁN CHẠY</span>
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-hong-trang.jpg" alt=""></a>
+                        <p class="name">
+                            <span class="hot">BÁN CHẠY</span>
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-hop.jpg" alt=""></a>
+                        <p class="name">
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"><img src="/static/img/hoa-ly.jpg" alt=""></a>
+                        <p class="name">
+                            <span>CG05059</span>
+                        </p>
+                        <p class="price">390,000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="footer-surround container-fluid">
+                <div class="footer container">
+                    <div class="shop-footer row">
+                        <div class="col-md-4">
+                            <h2>Về Boot Shopping</h2>
+                            <ul>
+                                <li><a href="">Giới thiệu về shop</a></li>
+                                <li><a href="">Chính sách giao hàng</a></li>
+                                <li><a href="">Hướng dẫn mua hàng</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Thanh toán</h2>
+                            <ul class="thanh-toan">
+                                <li><img src="https://i.imgur.com/HQ74KUx.png" alt="visa"></li>
+                                <li><img src="https://i.imgur.com/1bMhJVF.png" alt="card"></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Liên hệ</h2>
+                            <ul>
+                                <li><p>Điện thoại: (+84) 967 664 222</p></li>
+                                <li><p>Email: bootshop@gmail.com</p></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div id="header" th:fragment="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"><a href="#">
+                <img src="/static/img/icon.ico" alt="logo">
+            </a></div>
+            <div class="col-md-4">
+                <div class="search-container">
+                    <form th:action="@{/search}" method="get">
+                        <input type="text" placeholder=" tìm kiếm.." name="search">
+                        <button class="glyphicon glyphicon-search"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2 header_info">
+                <span class="glyphicon glyphicon-earphone"></span>
+                <span style="font-weight: bold;"> 1800 8198</span>
+                <span> (miễn phí)</span>
+            </div>
+            <div class="col-md-2 header_info">Giao nhanh 2h</div>
+            <div class="col-md-2 header_info">
+                <a href="#">
+                    <span><img style="margin: 0;" src="/static/img/cart.png" alt="cart"></span>
+                    <span>0 sản phẩm</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
