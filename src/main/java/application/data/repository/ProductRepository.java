@@ -16,21 +16,11 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-//    @Query("SELECT p FROM tbl_products p WHERE LOWER(p.name) = LOWER(:name)")
-//    Object search(@Param("name") String name);
-
     @Query("SELECT p FROM tbl_products p WHERE p.name LIKE :name")
     Collection<Product> findAllByName(@Param("name") String name);
 
-//    @Query("SELECT p FROM tbl_products WHERE p.category = :category ")
-//    ArrayList<Product> listByCat(@Param("category") Category category);
-
-
-
     @Query("select p from tbl_products p where p.category.id = :id")
     ArrayList<Product> find(@Param("id") int id);
-
-
 
 
 }
