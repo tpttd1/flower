@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+</head>
+<body>
+    <div id="wrapper">
+        <div th:replace="fragments/header :: header"></div>
+        <div id="main-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3" th:each="product : ${vm.getProductDetailModels()}">
+                        <div class="item-product__image">
+                            <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
+                                <img th:src="${product.getImage()}" alt="">
+                            </a>
+                        </div>
+                        <div class="item-product__title ">
+                            <span th:text="${product.getName()}"></span>
+                        </div>
+                        <div class="item-product__amount">
+                            <p >
+                                <a id="minus1" class="minus"><i class="fa fa-minus"></i></a>
+                                <input id="qty1" type="text" value="1" class="qty"/>
+                                <a id="add1" class="add"><i class="fa fa-plus"></i></a>
+                            </p>
+                            <!--<span th:text="${product.getAmount()}"></span>-->
+                        </div>
+                        <div class="item-product__price">
+                            <span class="price" th:attr="data-price=${product.getPrice()}" th:text="${product.getPrice()}"></span><span></span>
+                        </div>
+                        <div class="item-product__action">
+                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Thêm vào giỏ</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

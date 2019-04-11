@@ -2,15 +2,23 @@ package application.controller.api;
 
 import application.data.model.Product;
 import application.data.repository.CategoryRepository;
+import application.data.service.CategoryService;
 import application.data.service.ProductService;
 import application.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/product")
@@ -20,10 +28,30 @@ public class ProductApiController {
     private ProductService productService;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
+
+    @GetMapping("/download")
+    public ResponseEntity<Object> downloadFile() throws IOException {
+        String filename = "/static/img/cart.png";
+        File file = new File(filename);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getName()));
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+
+        ResponseEntity<Object>
+                responseEntity = ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(
+                MediaType.parseMediaType("application/txt")).body(resource);
+
+        return responseEntity;
+    }
 
     @GetMapping("/listAll")
-    public ArrayList<ProductDetailModel> listAllProduct() {
+    public BaseApiResult listAllProduct() {
+        DataApiResult result = new DataApiResult();
         ModelMapper modelMapper = new ModelMapper();
         ArrayList<Product> list = productService.listAll();
         ArrayList<ProductDetailModel> listAll = new ArrayList<>();
@@ -39,18 +67,23 @@ public class ProductApiController {
                 pro.setQuantity(product.getQuantity());
                 pro.setPrice(product.getPrice());
 
-                product.setCategory(categoryRepository.findOne(product.getCategory().getId()));
+                product.setCategory(categoryService.findOne(product.getCategory().getId()));
 
                 CategoryDataModel cat = modelMapper.map(product.getCategory(), CategoryDataModel.class);
                 pro.setCategory(cat);
 
                 listAll.add(pro);
+                result.setData(listAll);
+                result.setMessage("get all products");
+                result.setSuccess(true);
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
+            result.setSuccess(false);
+            result.setMessage("get product fail: " + e.getMessage());
         }
 
-        return listAll;
+        return result;
     }
 
     @PostMapping("/addNew")
@@ -60,7 +93,7 @@ public class ProductApiController {
         try {
             if(!"".equals(product.getName()) && !"".equals(product.getImage()) && !"".equals(product.getDescription())  ) {
                 Product product1 = modelMapper.map(product, Product.class);
-                product1.setCategory(categoryRepository.findOne(product.getCategoryId()));
+                product1.setCategory(categoryService.findOne(product.getCategoryId()));
                 product1.setCreatedDate(new Date());
                 productService.addNewProduct(product1);
 
@@ -86,11 +119,37 @@ public class ProductApiController {
         Product product = productService.findOne(id);
         productDetailModel = modelMapper.map(product, ProductDetailModel.class);
 
-        product.setCategory(categoryRepository.findOne(product.getCategory().getId()));
+        product.setCategory(categoryService.findOne(product.getCategory().getId()));
         CategoryDataModel cat = modelMapper.map(product.getCategory(), CategoryDataModel.class);
         productDetailModel.setCategory(cat);
 
         return productDetailModel;
+    }
+
+    @GetMapping("/detail/{id}")
+    public BaseApiResult detail(@PathVariable int id) {
+        DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper = new ModelMapper();
+        ProductDetailModel productDetailModel = new ProductDetailModel();
+
+        try {
+            Product product = productService.findOne(id);
+            productDetailModel = modelMapper.map(product, ProductDetailModel.class);
+
+            product.setCategory(categoryService.findOne(product.getCategory().getId()));
+            CategoryDataModel cat = modelMapper.map(product.getCategory(), CategoryDataModel.class);
+            productDetailModel.setCategory(cat);
+
+            result.setMessage("success");
+            result.setSuccess(true);
+            result.setData(productDetailModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setSuccess(false);
+            result.setMessage("fail");
+        }
+
+        return result;
     }
 
     @PostMapping("/update/{id}")
@@ -143,7 +202,7 @@ public class ProductApiController {
     public BaseApiResult listAllProductByCat(@PathVariable int id) {
         DataApiResult result = new DataApiResult();
         ModelMapper modelMapper = new ModelMapper();
-        Product pro = new Product();
+//        Product pro = new Product();
 //        pro.setCategory(categoryRepository.findOne(id));
         ArrayList<Product> products = productService.listByCat(id);
 
@@ -161,7 +220,7 @@ public class ProductApiController {
                 productDetailModel.setQuantity(product.getQuantity());
                 productDetailModel.setPrice(product.getPrice());
 
-                product.setCategory(categoryRepository.findOne(product.getCategory().getId()));
+                product.setCategory(categoryService.findOne(product.getCategory().getId()));
 
                 CategoryDataModel cat = modelMapper.map(product.getCategory(), CategoryDataModel.class);
                 productDetailModel.setCategory(cat);

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header-css">
     <meta charset="UTF-8">
+    <title>Min</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,14 +15,16 @@
     <div id="header" th:fragment="header">
     <div class="container">
         <div class="row">
-            <div class="col-md-2"><a href="#">
-                <img src="/static/img/icon.ico" alt="logo">
-            </a></div>
+            <div class="col-md-2 logo-img">
+                <a th:href="@{/}">
+                    <img src="/static/img/logo.png" alt="logo">
+                </a>
+            </div>
             <div class="col-md-4">
                 <div class="search-container">
-                    <form th:action="@{/search}" method="get">
+                    <form th:action="@{/product/search}" method="get">
                         <input type="text" placeholder=" tìm kiếm.." name="search">
-                        <button class="glyphicon glyphicon-search"></button>
+                        <!--<button class="glyphicon glyphicon-search"></button>-->
                     </form>
                 </div>
             </div>

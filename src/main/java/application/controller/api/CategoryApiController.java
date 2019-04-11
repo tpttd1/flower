@@ -11,8 +11,4 @@ public class CategoryApiController {
     @Autowired
     CategoryService categoryService;
 
-    @Autowired
-    ProductApiController productApiController;
-
-
 }

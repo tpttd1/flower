@@ -2,18 +2,24 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    background-color: lightpink;
 }
 #wrapper {
     margin: 0;
     padding: 0;
+    background-color: pink;
 }
 #header a {
     padding: 0;
     margin-left: 20px;
 }
-#header .col-md-2 img {
-    width: 60%;
-    margin: 10px auto;
+/*#header .col-md-2 img {*/
+    /*width: 60%;*/
+    /*margin: 10px auto;*/
+/*}*/
+.logo-img a img {
+    width: 100px;
+    max-height: 100%;
 }
 /*.col-md-4 input[type=text] {
   padding: 6px;

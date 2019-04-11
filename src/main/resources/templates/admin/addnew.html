@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Min</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div id="modal-create-product" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thông tin sản phẩm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="img-select-block margin-bottom-15">
+                        <label>Hình ảnh</label><br/>
+                        <img id="preview-product-img" th:src="@{/img/default-img.jpg}"/>
+                        <input type='file' id="input-select-img-product"/>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="input-product-name">
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <!--<label for="product-category">Danh mục:</label>-->
+                        <!--<select class="form-control" id="product-category">-->
+                            <!--<option th:each="category : ${vm.getListCategories()}"-->
+                                    <!--th:value="${category.getId()}"-->
+                                    <!--th:text="${category.getName()}">-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Mô tả:</label>
+                        <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Số lượng (Kg):</label>
+                        <input type="number" class="form-control" id="input-product-amount">
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Giá tiền (đ):</label>
+                        <input type="number" class="form-control" id="input-product-price">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày tạo:</label>
+                        <div class='input-group date' id='datepicker-created-date-product'>
+                            <input type='text' class="form-control"/>
+                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-default btn-save-product">Lưu sản phẩm</button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
